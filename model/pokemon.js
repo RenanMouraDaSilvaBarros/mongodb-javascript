@@ -11,8 +11,6 @@ class Pokemon {
     static async find(query, projection){
         return pokemon.find(query, projection)
     }
-
-    
     
 }
 
