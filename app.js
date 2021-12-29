@@ -1,18 +1,18 @@
 require('dotenv').config({ path: '.env' })
 
 const MongoDB = require('./database/mongoDB')
-const Pokemon = require('./model/pokemon')
 
 const express = require('express')
+const routers = require('./routers')
 const app = express()
 
-async function main(){
+async function middleware(){
     await MongoDB.createConnection()
-    const pokemon = await Pokemon.findAll()
-    console.log(pokemon)
+    app.use(express.json())
+    app.use(routers)
 }
 
-main()
+middleware()
 
 app.listen(3000, ()=>{
     console.log(`server running`)
